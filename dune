@@ -1,0 +1,11 @@
+(library
+ (name hfhe_lib)
+ (libraries zarith))
+
+(test
+ (name hfhe_test)
+ (libraries hfhe_lib))
+
+(executable
+ (name hfhe_main)
+ (libraries hfhe_lib))
