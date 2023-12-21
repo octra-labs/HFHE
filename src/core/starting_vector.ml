@@ -38,14 +38,14 @@ end
 module StartingVector = struct
   module V = Vector(PrimeField)
 
-  let phi x = 
+  let phi a p = 
     let open PrimeField in
     let r = rand () in
-    PrimeField.mul (PrimeField.add (PrimeField.mul x x) r) (PrimeField.add x one)
+    mul (add (mul a a) r) (add a one)
 
   let generate n : PrimeField.t list =
     let a = V.init n in
     let p = V.init n in
-    let phi_applied = V.map2 (fun ai pi -> phi (PrimeField.mul ai pi)) a p in
+    let phi_applied = List.map2 phi a p in
     List.map V.reduce (List.map (fun x -> [x]) phi_applied)
 end
